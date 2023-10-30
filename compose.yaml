@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   carteiras:
-    image: masassuncao/sistema-carteira-virtual
+    image: masassuncao/sistema-carteira-virtual:latest
     container_name: sistema-carteira-virtual
     network_mode: "host"
     ports:
@@ -11,7 +11,7 @@ services:
       - ENDERECO_HOST_MQ=${ENDERECO_HOST_MQ}
 
   usuarios:
-    image: masassuncao/sistema-cadastro-usuarios
+    image: masassuncao/sistema-cadastro-usuarios:latest
     container_name: sistema-cadastro-usuarios
     network_mode: "host"
     ports:
@@ -20,7 +20,7 @@ services:
       - ENDERECO_HOST_MQ=${ENDERECO_HOST_MQ}
   
   apostas:
-    image: leandroboromualdo/posgraducaopuc
+    image: leandroboromualdo/posgraducaopuc:latest
     container_name: sistema-gerenciamento-apostas
     network_mode: "host"
     ports:
@@ -29,3 +29,12 @@ services:
       - HOST_MQ=${ENDERECO_HOST_MQ}
       - QUEUE_NAME=${DRAW_QUEUE_NAME}
       - EXCHANGE_NOTIFICATIONS_NAME=${NOTIFICATIONS_QUEUE_NAME}
+  
+  sorteios:
+    image: dockerguel/animalbet:latest
+    container_name: sistema-sorteios
+    network_mode: "host"
+    ports:
+      - 3003:3003
+    environment:
+      - HOST_MQ=${ENDERECO_HOST_MQ}

@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  carteiras:
+    image: masassuncao/sistema-carteira-virtual
+    container_name: sistema-carteira-virtual
+    network_mode: "host"
+    ports:
+      - 3000:3000
+    environment:
+      - ENDERECO_HOST_MQ=${ENDERECO_HOST_MQ}
+
+  usuarios:
+    image: masassuncao/sistema-cadastro-usuarios
+    container_name: sistema-cadastro-usuarios
+    network_mode: "host"
+    ports:
+      - 3001:3001
+    environment:
+      - ENDERECO_HOST_MQ=${ENDERECO_HOST_MQ}

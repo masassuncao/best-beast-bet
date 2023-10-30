@@ -18,3 +18,14 @@ services:
       - 3001:3001
     environment:
       - ENDERECO_HOST_MQ=${ENDERECO_HOST_MQ}
+  
+  apostas:
+    image: leandroboromualdo/posgraducaopuc
+    container_name: sistema-gerenciamento-apostas
+    network_mode: "host"
+    ports:
+      - 3002:3010
+    environment:
+      - HOST_MQ=${ENDERECO_HOST_MQ}
+      - QUEUE_NAME=${DRAW_QUEUE_NAME}
+      - EXCHANGE_NOTIFICATIONS_NAME=${NOTIFICATIONS_QUEUE_NAME}
